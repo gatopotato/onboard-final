@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MapSection from './MapSection';
 import AdFormats from './AdFormats';
 import TrySection from './TrySection';
+import Footer from './Footer';
 
 export function Landing() {
   const isLoggedIn = !!localStorage.getItem("token");
@@ -110,6 +111,7 @@ export function Landing() {
       <MapSection />
       <AdFormats />
       <TrySection />
+      <Footer />
     </div>
   );
 }
