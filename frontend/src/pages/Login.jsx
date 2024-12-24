@@ -17,7 +17,7 @@ function Login() {
     try {
       const response = await login(email, password);
       // Store the token first
-      localStorage.setItem("token", response.token);
+      localStorage.setItem("token", response.data.token);
       // Then navigate to dashboard
       navigate("/dashboard", { replace: true });
       window.location.reload(); // Force refresh to update auth state
