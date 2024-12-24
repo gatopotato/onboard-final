@@ -20,7 +20,7 @@ function Layout({ children }) {
     <div className="min-h-screen bg-gradient-to-b from-[#0A1628] to-gray-900">
       <nav className="border-b border-white/10 backdrop-blur-sm bg-[#0A1628]/80 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between items-center h-16">
             <motion.div 
               className="flex"
               initial={{ opacity: 0, x: -20 }}
@@ -37,7 +37,7 @@ function Layout({ children }) {
 
             {isLoggedIn && (
               <motion.div 
-                className="flex items-center space-x-1"
+                className="hidden md:flex items-center space-x-1"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3 }}
@@ -65,6 +65,19 @@ function Layout({ children }) {
                 </button>
               </motion.div>
             )}
+
+            {isLoggedIn && (
+              <div className="md:hidden">
+                <button
+                  className="text-white focus:outline-none"
+                  aria-label="Open navigation menu"
+                >
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>
@@ -81,8 +94,8 @@ function Layout({ children }) {
       {/* Footer */}
       <footer className="border-t border-white/10 bg-[#0A1628]/50 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <p className="text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-gray-400 mb-4 md:mb-0">
               © 2024 Onboard. All rights reserved.
             </p>
             <div className="flex space-x-6">
