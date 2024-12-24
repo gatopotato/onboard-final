@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import AddListing from "./pages/AddListing";
+import Test from "./pages/MapSection";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
@@ -32,6 +33,7 @@ function App() {
         element={isLoggedIn ? <Navigate to="/" replace /> : <Signup />} 
       />
       <Route path="/" element={<Landing />} />
+      <Route path="/test" element={<Test />} />
 
       {/* Protected routes - require authentication */}
       <Route
