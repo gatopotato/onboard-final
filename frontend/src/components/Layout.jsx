@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Layout({ children }) {
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("token");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -69,6 +70,7 @@ function Layout({ children }) {
             {isLoggedIn && (
               <div className="md:hidden">
                 <button
+                  onClick={() => setMenuOpen(!menuOpen)}
                   className="text-white focus:outline-none"
                   aria-label="Open navigation menu"
                 >
@@ -76,6 +78,30 @@ function Layout({ children }) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
                 </button>
+
+                {menuOpen && (
+                  <div className="absolute right-4 top-16 bg-[#0A1628] border border-white/10 rounded-md shadow-lg py-2 z-50">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        className="block px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors duration-300"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                    <button
+                      onClick={() => {
+                        setMenuOpen(false);
+                        handleLogout();
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors duration-300"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
